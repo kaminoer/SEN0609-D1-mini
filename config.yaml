@@ -138,9 +138,9 @@ number:
     name: Range (Minimum)
     icon: mdi:arrow-collapse-left
     entity_category: config
-    min_value: 0
+    min_value: 0.6
     max_value: 25
-    initial_value: 0
+    initial_value: 0.6
     optimistic: true
     step: 0.1
     restore_value: true
