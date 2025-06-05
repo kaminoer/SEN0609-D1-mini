@@ -15,7 +15,7 @@ wifi: # Hardcoded for testing purposes. Recommend to use secrets.
   fast_connect: true
   reboot_timeout: 0s
   ap:
-    ssid: "Motion detector emergency hotspot"
+    ssid: "SEN0609 fallback hotspot"
 
 ota:
   - platform: esphome
@@ -188,7 +188,7 @@ number:
     id: mmwave_on_latency
     entity_category: config
     min_value: 0
-    max_value: 2 # Max value might need adjustment based on sensor capabilities
+    max_value: 2
     initial_value: 0
     optimistic: true
     step: 0.25
@@ -267,7 +267,7 @@ button:
     name: Restart mmWave Sensor
     id: restart_mmwave
     entity_category: config
-    internal: true # Usually for entities not exposed to HA UI directly unless needed
+    internal: true
     on_press:
       - uart.write: "resetSystem"
 
