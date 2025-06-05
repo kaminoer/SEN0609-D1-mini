@@ -9,7 +9,7 @@ esp8266:
   
 logger:
 
-wifi: # Hardcoded for testing purposes. Recommend to use secrets.
+wifi: # Recommend to use secrets.
   ssid: 
   password: 
   fast_connect: true
@@ -17,13 +17,15 @@ wifi: # Hardcoded for testing purposes. Recommend to use secrets.
   ap:
     ssid: "SEN0609 fallback hotspot"
 
+captive_portal:
+
 ota:
   - platform: esphome
 api:
 
 i2c:
-  sda: D2
-  scl: D1 
+  sda: D2 # GPIO4 on Wemos D1 Mini
+  scl: D1 # GPIO5 on Wemos D1 Mini
   scan: true
 
 uart:
@@ -158,15 +160,15 @@ number:
     restore_value: true
     unit_of_measurement: m
     mode: slider
-
+  
   - platform: template
-    id: range_reduced_mmwave
-    name: Range Reduced (mmWave)
-    icon: mdi:arrow-collapse-horizontal
+    name: Trigger Distance (mmWave)
+    icon: mdi:radar
+    id: mmwave_trigger_distance
     entity_category: config
     min_value: 0
     max_value: 25
-    initial_value: 0.8
+    initial_value: 6
     optimistic: true
     step: 0.1
     restore_value: true
@@ -175,9 +177,9 @@ number:
     set_action:
       - switch.turn_off: mmwave_sensor
       - delay: 1s
-      - uart.write: !lambda
-          std::string ms = "setRangeReduced " + to_string(x);
-          return std::vector<unsigned char>(ms.begin(), ms.end());
+      - uart.write: !lambda |-
+          std::string mss = "setTrigRange " + to_string(x);
+          return std::vector<unsigned char>(mss.begin(), mss.end());
       - delay: 1s
       - uart.write: "saveConfig"
       - delay: 1s
