@@ -21,7 +21,6 @@ captive_portal:
 
 ota:
   - platform: esphome
-  
 api:
 
 uart:
@@ -148,7 +147,7 @@ number:
     name: Range (Maximum)
     icon: mdi:arrow-collapse-right
     entity_category: config
-    min_value: 0
+    min_value: 0.6
     max_value: 25
     initial_value: 12
     optimistic: true
@@ -187,9 +186,9 @@ number:
     icon: mdi:clock-end
     entity_category: config
     id: mmwave_off_latency
-    min_value: 1
-    max_value: 600
-    initial_value: 15
+    min_value: 0.5
+    max_value: 1500
+    initial_value: 0.5
     optimistic: true
     step: 5
     restore_value: true
@@ -213,7 +212,7 @@ number:
     id: mmwave_on_latency
     entity_category: config
     min_value: 0
-    max_value: 2
+    max_value: 100
     initial_value: 0
     optimistic: true
     step: 0.25
